@@ -1,9 +1,124 @@
 fetch(`https://world.openfoodfacts.org/api/v3/product/5997523311230`)
     .then(reponse => reponse.json())
-    .then(data =>{
+    .then(data => {
         console.log(data);
 
-        
+        let bgColor = ""
+        let nutriscoreImage = ""
+        let qualityNutri = ""
+        let colorText = ""
+
+        switch (data.product.nutriscore_grade) {
+            case "a":
+                nutriscoreImage = "Assets/images/nutri/A.svg"
+                bgColor = "bg-success-subtle"
+                qualityNutri = "Trés bonne qualité nutritionnelle"
+                colorText = "text-success"
+                break;
+
+            case "b":
+                nutriscoreImage = "Assets/images/nutri/B.svg"
+                bgColor = "bg-success-subtle"
+                qualityNutri = "Bonne qualité nutritionnelle"
+                colorText = "text-success"
+                break;
+
+            case "c":
+                nutriscoreImage = "Assets/images/nutri/C.svg"
+                bgColor = "bg-warning-subtle"
+                qualityNutri = "Qualité nutritionnelle moyenne"
+                colorText = "text-warning"
+                break;
+
+            case "d":
+                nutriscoreImage = "Assets/images/nutri/D.svg"
+                bgColor = "bg-warning-subtle"
+                qualityNutri = "Moins bonne qualité nutritionnelle"
+                colorText = "text-warning"
+                break;
+
+            case "e":
+                nutriscoreImage = "Assets/images/nutri/E.svg"
+                bgColor = "bg-danger-subtle"
+                qualityNutri = "Moins bonne qualité nutritionnelle"
+                colorText = "text-danger"
+                break;
+
+            default:
+                nutriscoreImage = "Assets/images/nutri/IDK.svg"
+                bgColor = "bg-secondary-subtle"
+                qualityNutri = "Données nutrionelles manquantes"
+                colorText = "text-secondary"
+                break;
+        }
+
+        let bgColorNova = ""
+        let novaImage = ""
+        let colorTextNova = ""
+
+        switch (data.product.nova_group) {
+            case 1:
+                bgColorNova = "bg-success-subtle"
+                novaImage = "Assets/images/nova/Nova1.svg"
+                colorTextNova = "text-success"
+                break;
+
+            case 2:
+
+                bgColorNova = "bg-success-subtle"
+                novaImage = "Assets/images/nova/Nova2.svg"
+                colorTextNova = "text-success"
+                break;
+
+            case 3:
+
+                bgColorNova = "bg-success-subtle"
+                novaImage = "Assets/images/nova/Nova3.svg"
+                colorTextNova = "text-success"
+                break;
+
+            case 4:
+
+                bgColorNova = "bg-danger-subtle"
+                novaImage = "Assets/images/nova/Nova4.svg"
+                colorTextNova = "text-danger"
+                break;
+
+            default:
+                bgColorNova = "bg-secondary-subtle"
+                novaImage = "Assets/images/nova/NovaIDK.svg"
+                colorTextNova = "text-secondary"
+                break;
+        }
+
+        switch (data.product.ecoscore_grade) {
+            case "a":
+
+                break;
+
+            case "b":
+
+                break;
+
+            case "c":
+
+                break;
+
+            case "d":
+
+                break;
+
+            case "e":
+
+                break;
+
+            case "f":
+
+                break;
+
+            default:
+                break;
+        }
 
         document.getElementById("product").innerHTML = `
         <img class="col-lg-4 bg-white"
@@ -41,28 +156,28 @@ fetch(`https://world.openfoodfacts.org/api/v3/product/5997523311230`)
             <h2>Correspondance avec vos préférences</h2>
 
             <div class="d-flex justify-content-between">
-                <div class="row col-lg-4 py-3 border rounded bg-warning-subtle m-0 carte">
+                <div class="row col-lg-4 py-3 border rounded m-0 carte ${bgColor}">
                     <div class="col-lg-4">
                         <img class="img-fluid"
-                            src="./Assets/images/nutri/D.svg"
+                            src="${nutriscoreImage}"
                             alt="Nutri-Score D">
                     </div>
-                    <div class="col-lg-8 nutriscore">
-                        <p class="fs-6 orange fw-bold">Nutri-Score <span class="text-uppercase">${data.product.nutrition_grade_fr}</span></p>
-                        <p>Moins bonne qualité nutritionnelle</p>
+                    <div class="col-lg-8  nutriscore">
+                        <p class="fs-6 orange fw-bold ${colorText}">Nutri-Score <span class="text-uppercase">${data.product.nutrition_grade_fr}</span></p>
+                        <p>${qualityNutri}</p>
                     </div>
                     <!--2023 - grade = d -->
                 </div>
 
-                <div class="row col-lg-4 py-3 border rounded bg-danger-subtle m-0 carte">
+                <div class="row col-lg-4 py-3 border rounded m-0 carte ${bgColorNova}">
                     <div class="col-lg-2">
                         <img class="img-fluid"
-                            src="./Assets/images/nova/Nova4.svg"
+                            src="${novaImage}"
                             alt="Nutri-Score D">
                             <!-- nova_group -->
                     </div>
                     <div class="col-lg-8 nutriscore">
-                        <p class="fs-6 text-danger fw-bold">Aliments ultra-transformés</p>
+                        <p class="fs-6 fw-bold ${colorTextNova}">Aliments ultra-transformés</p>
                         <p>${data.product.nova_groups_markers[4].length} marqueurs d'ultra-transfomation</p>
                     </div>
                     <!--2023 - grade = d -->
