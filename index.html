@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -12,25 +12,47 @@
 <body class="row justify-content-center mx-0">
 
     <nav class="navbar bg-body-tertiary sticky-top">
-        <div class="container-fluid col-lg-9">
+        <div class="container-fluid col-lg-8">
             <a class="navbar-brand">Saïd FADLI</a>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Code-barres" aria-label="Search">
+                <input name="barCode" class="form-control me-2" type="search" placeholder="Code-barres"
+                    aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Recherche</button>
+                <button class="btn btn-outline-success" id="scan_button" type="button">scanner</button>
             </form>
         </div>
     </nav>
 
-    <!-- product_name_fr - brands - product_quantity + quantity(product_quantity_unit) -->
     <div class="row col-9 mt-4" id="product">
     </div>
 
 
 
+    <div class="text-center" style="display:none" id="video_container">
+        <video id="video" width="300" height="200" style="border: 1px solid gray"></video>
+    </div>
+    <main class="wrapper" style="padding-top:2em">
+        <section class="container" id="demo-content">
+            <div id="button_container" class="" style="display:none">
+                <a class="button" id="startButton">Start</a>
+                <a class="button" id="resetButton">Reset</a>
+            </div>
+
+            <div id="sourceSelectPanel" style="display:none">
+                <label for="sourceSelect">Change video source:</label>
+                <select id="sourceSelect" style="max-width:400px">
+                </select>
+            </div>
+            <label class="title visually-hidden">Result:</label>
+            <pre class="title visually-hidden"><code id="result"></code></pre>
+        </section>
+    </main>
 
 
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
     <script src="./Assets/js/script.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
