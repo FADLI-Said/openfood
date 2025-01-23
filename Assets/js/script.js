@@ -349,5 +349,6 @@ document.querySelector("#scan_button").addEventListener("click", function () {
         })
         .catch((err) => {
             console.error(err);
-        });
-});
+          });
+      });
+      
