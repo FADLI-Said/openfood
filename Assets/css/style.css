@@ -9,3 +9,17 @@
 .carte{
     width: 32%;
 }
+
+a:hover{
+    cursor: pointer;
+}
+
+@media(max-width:640px){
+    .carte{
+        width: 100%;
+    }
+
+    .carte>div{
+        text-align: center;
+    }
+}

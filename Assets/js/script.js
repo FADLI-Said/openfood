@@ -161,6 +161,14 @@ fetch(`https://world.openfoodfacts.org/api/v3/product/${item_code}`)
                 break;
         }
 
+        let novaNote = data.product.nova_group
+        let nbNovaMarkers = ""
+        if (data.product.nova_groups_markers != null && data.product.nova_group != 1) {
+            nbNovaMarkers = data.product.nova_groups_markers[novaNote].length + " marqueurs d'ultra-transformation"
+        } else {
+            nbNovaMarkers = ""
+        }
+
         document.getElementById("product").innerHTML = `
         <img class="col-lg-4 bg-white"
             src="${data.product.selected_images.front.display.fr}" alt="Image de ${data.product.product_name_fr}">
@@ -197,7 +205,7 @@ fetch(`https://world.openfoodfacts.org/api/v3/product/${item_code}`)
             <h2>Correspondance avec vos préférences</h2>
 
             <div class="d-lg-flex justify-content-between">
-                <div class="row col-lg-4 py-3 border rounded m-0 carte ${bgColor}">
+                <div class="row col-lg-4 py-3 border rounded m-0 mb-3 carte ${bgColor}">
                     <div class="col-lg-4">
                         <img class="img-fluid"
                             src="${nutriscoreImage}"
@@ -211,7 +219,7 @@ fetch(`https://world.openfoodfacts.org/api/v3/product/${item_code}`)
                 </div>
 
 
-                <div class="row col-lg-4 py-3 border rounded m-0 carte ${bgColorNova}">
+                <div class="row col-lg-4 py-3 border rounded m-0 mb-3 carte ${bgColorNova}">
                     <div class="col-lg-2">
                         <img class="img-fluid"
                             src="${novaImage}"
@@ -220,13 +228,13 @@ fetch(`https://world.openfoodfacts.org/api/v3/product/${item_code}`)
                     </div>
                     <div class="col-lg-8 nutriscore">
                         <p class="fs-6 fw-bold ${colorTextNova}">${transformed}</p>
-                        <p>${data.product.nova_groups_markers == null ? "" : data.product.nova_groups_markers[4].length + " marqueurs d'ultra-transformation"} </p>
+                        <p>${nbNovaMarkers} </p>
                     </div>
                     <!--2023 - grade = d -->
                 </div>
 
 
-                <div class="row col-lg-4 py-3 border rounded m-0 carte ${bgColorGreen} ">
+                <div class="row col-lg-4 py-3 border rounded m-0 mb-3 carte ${bgColorGreen} ">
                     <div class="col-lg-5">
                         <img class="img-fluid"
                             src="${greenScoreImage}"
