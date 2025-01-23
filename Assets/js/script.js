@@ -206,7 +206,7 @@ fetch(`https://world.openfoodfacts.org/api/v3/product/${item_code}`)
             <!-- countries_hierarchy -->
         </div>
 
-        <div class="bg-white mx-0 mt-4 row p-3" id="score">
+        <div class="bg-white mx-0 mt-4 row p-0" id="score">
             <h2>Correspondance avec vos préférences</h2>
 
             <div class="d-lg-flex justify-content-between">
