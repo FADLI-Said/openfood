@@ -10,6 +10,11 @@ fetch(`https://world.openfoodfacts.org/api/v3/product/${item_code}`)
     .then(reponse => reponse.json())
     .then(data => {
         console.log(data);
+        if (data.status == "failure") {
+            document.getElementById("product").innerHTML = `
+            <h1>Le produit n'existe pas ou le code-barres est incorrect</h1>
+            `
+        }
 
         let bgColor = ""
         let nutriscoreImage = ""
