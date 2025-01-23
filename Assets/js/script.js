@@ -8,8 +8,7 @@ if (item_code == null || item_code == "") {
 document.getElementById("home").addEventListener("click", function () {
     item_code = "5997523311230"
     console.log(item_code);
-    window.location.href = `?barCode=${item_code}`
-    
+    window.location.href = `?barCode=${item_code}`    
 })
 
 
