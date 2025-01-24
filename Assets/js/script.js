@@ -183,20 +183,6 @@ fetch(`https://world.openfoodfacts.org/api/v3/product/${item_code}`)
             nbNovaMarkers = ""
         }
 
-        let countrie = ""
-
-        if (data.product.countries_tags.length > 10) {
-            for (let i = 0; i < 5; i++) {
-                if (data.product.countries_tags[i].map(countries_tags => countries_tags.startsWith("en:"))) {
-                    countries_tags.replace("en:", "")
-                }
-                countrie += data.product.countries_tags[i].substring(3) + ", "
-            }
-        }
-
-
-        console.log(countrie);
-
 
         document.getElementById("product").innerHTML = `
         <img class="col-lg-4 bg-white"
